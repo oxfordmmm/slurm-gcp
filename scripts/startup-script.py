@@ -189,7 +189,8 @@ def install_packages():
                 'wget',
                 'tmux',
                 'pdsh',
-                'openmpi'
+                'openmpi',
+                'docker'
                ]
 
     while subprocess.call(['yum', 'install', '-y'] + packages):
@@ -209,6 +210,9 @@ def install_packages():
         subprocess.call(shlex.split("sudo yum clean all"))
         subprocess.call(shlex.split("sudo yum -y install cuda"))
         subprocess.call(shlex.split("nvidia-smi")) # Creates the device files
+
+    subprocess.call(shlex.split("systemctl start docker"))
+    subprocess.call(shlex.split("chmod 777 /var/run/docker.sock"))
 
 #END install_packages()
 
