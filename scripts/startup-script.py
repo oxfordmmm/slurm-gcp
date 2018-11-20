@@ -255,8 +255,7 @@ def setup_munge():
 #END setup_munge ()
 
 def start_munge():
-        subprocess.call(['systemctl', 'enable', 'munge'])
-        subprocess.call(['systemctl', 'start', 'munge'])
+        subprocess.call(shlex.split("munged -f"))
 #END start_munge()
 
 def setup_nfs_exports():
